@@ -69,6 +69,7 @@ VARKEYWORDS = 8
 # Put opcode names in the global namespace
 for name, val in opmap.items():
     globals()[name] = val
+PRINT_EXPR = 70
 
 # These opcodes will generate a statement. This is used in the first
 # pass (in Code.find_else) to find which POP_JUMP_IF_* instructions
@@ -1931,6 +1932,10 @@ class SuiteDecompiler:
     def POP_TOP(self, addr):
         self.stack.pop().on_pop(self)
 
+    def PRINT_EXPR(self, addr):
+        expr = self.stack.pop()
+        self.write("{}", expr)
+    
     def ROT_TWO(self, addr: Address):
         # special case: x, y = z, t
 
