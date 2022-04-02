@@ -1925,16 +1925,16 @@ class SuiteDecompiler:
             # We're done with this except clause
             return self.END_NOW
 
+    def PRINT_EXPR(self, addr):
+        expr = self.stack.pop()
+        self.write("{}", expr)
+        
     #
     # Stack manipulation
     #
 
     def POP_TOP(self, addr):
         self.stack.pop().on_pop(self)
-
-    def PRINT_EXPR(self, addr):
-        expr = self.stack.pop()
-        self.write("{}", expr)
     
     def ROT_TWO(self, addr: Address):
         # special case: x, y = z, t
