@@ -1076,23 +1076,24 @@ class PyGenExpr(PyComp):
 
 
 class PyYield(PyExpr):
-    precedence = 1
+    precedence = 0
+    pattern = "yield {}"
 
     def __init__(self, value):
         self.value = value
 
     def __str__(self):
-        return "yield {}".format(self.value)
-
+        return self.pattern.format(self.value)
 
 class PyYieldFrom(PyExpr):
-    precedence = 1
+    precedence = 0
+    pattern = "yield from {}"
 
     def __init__(self, value):
         self.value = value
 
     def __str__(self):
-        return "yield from {}".format(self.value)
+        return self.pattern.format(self.value)
 
 
 class PyStarred(PyExpr):
