@@ -24,6 +24,9 @@ from __future__ import annotations
 
 from typing import Union, Iterable, Any, List
 
+import sys
+print(sys.path)
+
 __all__ = ['decompile']
 
 
